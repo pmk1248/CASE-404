@@ -25,7 +25,7 @@ export default async (req, context) => {
                     { role: 'user', content: text }
                 ],
                 temperature: 0.7,
-                max_tokens: 150
+                max_tokens: 300
             })
         });
 
