@@ -331,10 +331,11 @@ function resetVerdict(caseNum) {
 function revealAnswer(caseNum, killerName) {
     checkVerdict(caseNum, killerName);
 }
-// --- MYSTERIOUS AMBIENT AUDIO SYSTEM ---
+
+// --- PROPER CINEMATIC MYSTERY SOUNDTRACK ---
 let caseAudio = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=dark-mystery-trailer-110663.mp3');
 caseAudio.loop = true;
-caseAudio.volume = 0.4;
+caseAudio.volume = 0.5;
 let isAudioPlaying = false;
 
 function toggleAudio() {
@@ -350,9 +351,9 @@ function toggleAudio() {
         caseAudio.play().then(() => {
             isAudioPlaying = true;
             audioBtn.innerText = "Mute Ambient";
-            audioLabel.innerText = "Playing Mystery Soundscape";
+            audioLabel.innerText = "Playing Mystery Soundtrack";
         }).catch(e => {
-            alert("Please click anywhere on the page first, then click Play Ambient.");
+            alert("Click anywhere on the page first, then click Play Ambient.");
         });
     }
 }
@@ -368,7 +369,7 @@ function switchCase(caseNum) {
         document.getElementById('case-hub-view').style.display = 'block';
         sb.style.display = 'none';
         if (isAudioPlaying && audioLabel) {
-            audioLabel.innerText = "Playing Mystery Soundscape (Hub)";
+            audioLabel.innerText = "Playing Mystery Soundtrack (Hub)";
         }
     } else {
         document.getElementById(`case-${caseNum}-view`).style.display = 'block';
