@@ -331,10 +331,90 @@ function resetVerdict(caseNum) {
 function revealAnswer(caseNum, killerName) {
     checkVerdict(caseNum, killerName);
 }
-// --- BACKGROUND AUDIO SYSTEM ---
-// Case Audio Playlists (Reliable direct audio streams)
-const caseAudioTracks = {
-    '404': 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Beethoven_Moonlight_Sonata_%281st_movement%29.ogg', // Classical eerie mystery vibe
-    '405': 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Chopin_Nocturne_Op_9_No_2.ogg', // Noir suspense vibe
-    '406': 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Gymnop%C3%A9die_No._1_%28Eric_Satie%29.ogg' // Melancholic train / detective vibe
-};
+// --- ATMOSPHERIC WEB AUDIO DETECTIVE SYNTHESIZER ---
+let audioCtx = null;
+let synthOsc1 = null;
+let synthOsc2 = null;
+let synthGain = null;
+let isAudioPlaying = false;
+
+function toggleAudio() {
+    const audioBtn = document.getElementById('audio-toggle-btn');
+    const audioLabel = document.getElementById('current-audio-label');
+    
+    if (isAudioPlaying) {
+        if (synthGain) {
+            synthGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
+            setTimeout(() => {
+                if (audioCtx && audioCtx.state !== 'closed') audioCtx.suspend();
+            }, 600);
+        }
+        isAudioPlaying = false;
+        audioBtn.innerText = "Play Ambient";
+        audioLabel.innerText = "Muted";
+    } else {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Create a low dark ambient chord (D minor noir drone)
+            synthOsc1 = audioCtx.createOscillator();
+            synthOsc2 = audioCtx.createOscillator();
+            synthGain = audioCtx.createGain();
+            
+            synthOsc1.type = 'sawtooth';
+            synthOsc2.type = 'sine';
+            
+            // Eerie low chord frequencies (D2 and A2)
+            synthOsc1.frequency.setValueAtTime(73.42, audioCtx.currentTime); // D2
+            synthOsc2.frequency.setValueAtTime(110.00, audioCtx.currentTime); // A2
+            
+            // Low volume for subtle atmosphere
+            synthGain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+            
+            synthOsc1.connect(synthGain);
+            synthOsc2.connect(synthGain);
+            synthGain.connect(audioCtx.destination);
+            
+            synthOsc1.start();
+            synthOsc2.start();
+        } else if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+            if (synthGain) synthGain.gain.setTargetAtTime(0.03, audioCtx.currentTime, 0.5);
+        }
+        
+        isAudioPlaying = true;
+        audioBtn.innerText = "Mute Ambient";
+        audioLabel.innerText = "Playing Noir Drone";
+    }
+}
+
+function switchCase(caseNum) {
+    activeCase = caseNum;
+    document.querySelectorAll('.case-view').forEach(v => v.style.display = 'none');
+    
+    const sb = document.getElementById('main-sidebar');
+    const audioLabel = document.getElementById('current-audio-label');
+
+    if (caseNum === 'hub') {
+        document.getElementById('case-hub-view').style.display = 'block';
+        sb.style.display = 'none';
+        if (isAudioPlaying && audioCtx && audioCtx.state === 'running') {
+            audioLabel.innerText = "Playing Noir Drone (Hub)";
+        }
+    } else {
+        document.getElementById(`case-${caseNum}-view`).style.display = 'block';
+        sb.style.display = 'flex';
+        document.getElementById('case-selector').value = caseNum;
+        
+        const titles = {
+            '404': 'Case 404: The Silence of Blackwood Manor',
+            '405': 'Case 405: The Heir Who Never Died',
+            '406': 'Case 406: The Last Passenger'
+        };
+        document.getElementById('sidebar-case-title').innerText = titles[caseNum];
+
+        if (isAudioPlaying && audioLabel) {
+            audioLabel.innerText = `Playing Case ${caseNum} Drone`;
+        }
+    }
+}
