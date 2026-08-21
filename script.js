@@ -332,7 +332,7 @@ function revealAnswer(caseNum, killerName) {
     checkVerdict(caseNum, killerName);
 }
 
-// --- PROPER CINEMATIC MYSTERY SOUNDTRACK ---
+// --- CLEAN CINEMATIC MYSTERY AUDIO ---
 let caseAudio = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=dark-mystery-trailer-110663.mp3');
 caseAudio.loop = true;
 caseAudio.volume = 0.5;
@@ -358,33 +358,3 @@ function toggleAudio() {
     }
 }
 
-function switchCase(caseNum) {
-    activeCase = caseNum;
-    document.querySelectorAll('.case-view').forEach(v => v.style.display = 'none');
-    
-    const sb = document.getElementById('main-sidebar');
-    const audioLabel = document.getElementById('current-audio-label');
-
-    if (caseNum === 'hub') {
-        document.getElementById('case-hub-view').style.display = 'block';
-        sb.style.display = 'none';
-        if (isAudioPlaying && audioLabel) {
-            audioLabel.innerText = "Playing Mystery Soundtrack (Hub)";
-        }
-    } else {
-        document.getElementById(`case-${caseNum}-view`).style.display = 'block';
-        sb.style.display = 'flex';
-        document.getElementById('case-selector').value = caseNum;
-        
-        const titles = {
-            '404': 'Case 404: The Silence of Blackwood Manor',
-            '405': 'Case 405: The Heir Who Never Died',
-            '406': 'Case 406: The Last Passenger'
-        };
-        document.getElementById('sidebar-case-title').innerText = titles[caseNum];
-
-        if (isAudioPlaying && audioLabel) {
-            audioLabel.innerText = `Playing Case ${caseNum} Soundtrack`;
-        }
-    }
-}
