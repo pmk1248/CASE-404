@@ -331,11 +331,10 @@ function resetVerdict(caseNum) {
 function revealAnswer(caseNum, killerName) {
     checkVerdict(caseNum, killerName);
 }
-// --- ATMOSPHERIC WEB AUDIO DETECTIVE SYNTHESIZER ---
-let audioCtx = null;
-let synthOsc1 = null;
-let synthOsc2 = null;
-let synthGain = null;
+// --- MYSTERIOUS AMBIENT AUDIO SYSTEM ---
+let caseAudio = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=dark-mystery-trailer-110663.mp3');
+caseAudio.loop = true;
+caseAudio.volume = 0.4;
 let isAudioPlaying = false;
 
 function toggleAudio() {
@@ -343,48 +342,18 @@ function toggleAudio() {
     const audioLabel = document.getElementById('current-audio-label');
     
     if (isAudioPlaying) {
-        if (synthGain) {
-            synthGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
-            setTimeout(() => {
-                if (audioCtx && audioCtx.state !== 'closed') audioCtx.suspend();
-            }, 600);
-        }
+        caseAudio.pause();
         isAudioPlaying = false;
         audioBtn.innerText = "Play Ambient";
         audioLabel.innerText = "Muted";
     } else {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            
-            // Create a low dark ambient chord (D minor noir drone)
-            synthOsc1 = audioCtx.createOscillator();
-            synthOsc2 = audioCtx.createOscillator();
-            synthGain = audioCtx.createGain();
-            
-            synthOsc1.type = 'sawtooth';
-            synthOsc2.type = 'sine';
-            
-            // Eerie low chord frequencies (D2 and A2)
-            synthOsc1.frequency.setValueAtTime(73.42, audioCtx.currentTime); // D2
-            synthOsc2.frequency.setValueAtTime(110.00, audioCtx.currentTime); // A2
-            
-            // Low volume for subtle atmosphere
-            synthGain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-            
-            synthOsc1.connect(synthGain);
-            synthOsc2.connect(synthGain);
-            synthGain.connect(audioCtx.destination);
-            
-            synthOsc1.start();
-            synthOsc2.start();
-        } else if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-            if (synthGain) synthGain.gain.setTargetAtTime(0.03, audioCtx.currentTime, 0.5);
-        }
-        
-        isAudioPlaying = true;
-        audioBtn.innerText = "Mute Ambient";
-        audioLabel.innerText = "Playing Noir Drone";
+        caseAudio.play().then(() => {
+            isAudioPlaying = true;
+            audioBtn.innerText = "Mute Ambient";
+            audioLabel.innerText = "Playing Mystery Soundscape";
+        }).catch(e => {
+            alert("Please click anywhere on the page first, then click Play Ambient.");
+        });
     }
 }
 
@@ -398,8 +367,8 @@ function switchCase(caseNum) {
     if (caseNum === 'hub') {
         document.getElementById('case-hub-view').style.display = 'block';
         sb.style.display = 'none';
-        if (isAudioPlaying && audioCtx && audioCtx.state === 'running') {
-            audioLabel.innerText = "Playing Noir Drone (Hub)";
+        if (isAudioPlaying && audioLabel) {
+            audioLabel.innerText = "Playing Mystery Soundscape (Hub)";
         }
     } else {
         document.getElementById(`case-${caseNum}-view`).style.display = 'block';
@@ -414,7 +383,7 @@ function switchCase(caseNum) {
         document.getElementById('sidebar-case-title').innerText = titles[caseNum];
 
         if (isAudioPlaying && audioLabel) {
-            audioLabel.innerText = `Playing Case ${caseNum} Drone`;
+            audioLabel.innerText = `Playing Case ${caseNum} Soundtrack`;
         }
     }
 }
