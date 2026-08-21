@@ -1,51 +1,45 @@
-exports.handler = async (event) => {
-    if (event.httpMethod !== "POST") {
-        return { statusCode: 405, body: "Method Not Allowed" };
+export default async (req, context) => {
+    if (req.method !== 'POST') {
+        return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
     }
-
     try {
-        const body = JSON.parse(event.body);
-        const userText = body.text;
-        const systemPrompt = body.persona; 
+        const body = await req.json();
+        const text = body.text;
+        const persona = body.persona;
+        const apiKey = process.env.GROQ_API_KEY;
         
-        // Grab the hidden API key from Netlify
-        const API_KEY = process.env.GROQ_API_KEY; 
-        
-        // The Groq API URL
-        const url = 'https://api.groq.com/openai/v1/chat/completions';
+        if (!apiKey) {
+            return new Response(JSON.stringify({ reply: "DEBUG ERROR: GROQ_API_KEY environment variable is missing or empty in Netlify." }), { status: 200 });
+        }
 
-        // Send the interrogation data to Groq
-        const response = await fetch(url, {
+        const apiRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            model: 'llama-3.3-70b-versatile',
             method: 'POST',
-            headers: { 
-                'Authorization': `Bearer ${API_KEY}`,
-                'Content-Type': 'application/json' 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: "llama-3.3-70b-versatile", // The smartest free model for roleplay
+                model: 'llama-3.3-70b-versatile',
                 messages: [
-                    { role: "system", content: systemPrompt },
-                    { role: "user", content: "Detective: " + userText }
+                    { role: 'system', content: persona },
+                    { role: 'user', content: text }
                 ],
-                temperature: 0.7, // Keeps the AI creative but focused
-                max_tokens: 150   // Prevents the AI from rambling
+                temperature: 0.7,
+                max_tokens: 150
             })
         });
 
-        const data = await response.json();
-        const aiText = data.choices[0].message.content;
+        const data = await apiRes.json();
+        
+        if (data.error) {
+            return new Response(JSON.stringify({ reply: "GROQ API ERROR: " + (data.error.message || JSON.stringify(data.error)) }), { status: 200 });
+        }
 
-        // Send the AI's response back to your website
-        return { 
-            statusCode: 200, 
-            body: JSON.stringify({ reply: aiText }) 
-        };
-
+        const reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : "The suspect remains silent.";
+        
+        return new Response(JSON.stringify({ reply }), { status: 200, headers: { 'Content-Type': 'application/json' } });
     } catch (error) {
-        console.error(error);
-        return { 
-            statusCode: 500, 
-            body: JSON.stringify({ error: "Connection to suspect lost." }) 
-        };
+        return new Response(JSON.stringify({ reply: "SERVER EXCEPTION: " + error.message }), { status: 200 });
     }
 };
