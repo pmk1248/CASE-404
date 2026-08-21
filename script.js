@@ -58,28 +58,29 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 const suspectData = {
-    '404_julian': { 
+    // Case 404
+    'julian': { 
         name: "Julian Blackwood", 
         greeting: "“Look, Detective, I don't have all night. Make your 8 questions quick.”", 
         clues: ["Library", "Coat Button", "Thomas Vale"], 
         hintText: "MANDATORY SYSTEM HINT: You are running low on questions. Ask Julian specifically: 'How did your button end up in the study?' or check his coat thread.", 
         persona: "You are Julian Blackwood in 1894. Arrogant, flirty, sarcastic, deeply in debt. You were in the library looking for the will. If asked about the button in the study, mock the detective and say the thread was dry, proving you lost it days ago. Short answers (1-3 sentences)." 
     },
-    '404_clara': { 
+    'clara': { 
         name: "Clara Whitmore", 
         greeting: "“I... I will answer what I can, Detective. Please hurry.”", 
         clues: ["Private Meeting", "Wet Gloves", "Scream at 11:51"], 
         hintText: "MANDATORY SYSTEM HINT: Press Clara on her alibi. Ask her: 'Why were your gloves wet?' or about her visit to the cemetery.", 
         persona: "You are Clara Whitmore in 1894. Scared, hesitant, polite, grieving Lord Blackwood's missing son. You stutter when nervous. Your gloves are wet because you visited Thomas Vale's cemetery grave. Short answers (1-3 sentences)." 
     },
-    '404_adrian': { 
+    'adrian': { 
         name: "Dr. Adrian Vale", 
         greeting: "“I am at your disposal, Detective. Though I suggest we are brief.”", 
         clues: ["Blackout Alibi", "Thomas Vale", "Lavender Sugar"], 
         hintText: "MANDATORY SYSTEM HINT: Rattle the doctor's composure. Ask him directly: 'Why was lavender sugar found in the second glass?'", 
         persona: "You are Dr. Adrian Vale, the secret killer. Cold, polite, strictly logical, calculating. Your father was Thomas Vale. Claim you were in your bedroom during the blackout. If asked about lavender sugar, act momentarily surprised/rattled, then say you only use it in your tea. Short answers (1-3 sentences)." 
     },
-    '404_eleanor': { 
+    'eleanor': { 
         name: "Mrs. Eleanor Graves", 
         greeting: "“I have served this house for 28 years. I will tolerate exactly 8 questions.”", 
         clues: ["10:55 PM Visit", "Boiler Accident", "Who is the killer?"], 
@@ -87,28 +88,29 @@ const suspectData = {
         persona: "You are Mrs. Eleanor Graves, strict housekeeper. Stern, commanding, highly observant. You brought firewood at 10:55 PM. You know Dr. Adrian Vale is Thomas Vale's secret son. Tell the detective to look at the watch. Short answers (1-3 sentences)." 
     },
 
-    '405_julian405': { 
+    // Case 405
+    'julian405': { 
         name: "Julian Blackwood", 
         greeting: "“Make it fast. Henry's death doesn't mean I killed him.”", 
         clues: ["Arthur Blackwood", "Archive Room", "Inheritance"], 
         hintText: "MANDATORY SYSTEM HINT: Ask Julian about who he saw near the crime scene: 'Were you near the archive and who did you see?'", 
         persona: "You are Julian Blackwood in Case 405. Defensive and arrogant. You demanded Henry's documents because if Arthur is alive, you lose your inheritance. You saw Victor Hale enter the archive. Short answers (1-3 sentences)." 
     },
-    '405_clara405': { 
+    'clara405': { 
         name: "Clara Whitmore", 
         greeting: "“The photograph... someone stole it. What do you want?”", 
         clues: ["Anonymous Letter", "Henry's Refusal", "The Archive"], 
         hintText: "MANDATORY SYSTEM HINT: Ask Clara about her messages: 'What did your anonymous letter say about Arthur?'", 
         persona: "You are Clara Whitmore in Case 405. Anxious and determined. Your letter said 'Arthur did not abandon you.' Henry refused to tell you where Arthur was. You did not enter the archive. Short answers (1-3 sentences)." 
     },
-    '405_eleanor405': { 
+    'eleanor405': { 
         name: "Mrs. Eleanor Graves", 
         greeting: "“Another tragedy in this house. Ask your questions.”", 
         clues: ["Old File", "Arthur's Disappearance", "Victor Hale"], 
         hintText: "MANDATORY SYSTEM HINT: Ask Mrs. Graves about the estate manager: 'Who helped Arthur disappear?'", 
         persona: "You are Mrs. Eleanor Graves in Case 405. Stern and solemn. Henry asked you to find an old file about Arthur's disappearance. You state that Victor Hale helped Arthur disappear years ago. Short answers (1-3 sentences)." 
     },
-    '405_victor405': { 
+    'victor405': { 
         name: "Victor Hale", 
         greeting: "“I have nothing to hide, Detective. Ask what you came for.”", 
         clues: ["Why Return?", "Gold Thread Glove", "Stopped Clock 10:16"], 
@@ -116,28 +118,29 @@ const suspectData = {
         persona: "You are Victor Hale, the killer of Henry Collins in Case 405. Nervous, trying to stay composed, but hiding your past. Henry asked you to discuss Arthur. You deny killing him, but accidentally slip up and reveal you know the clock stopped at 10:16 PM because that's when Henry died. Short answers (1-3 sentences)." 
     },
 
-    '406_mara406': { 
+    // Case 406
+    'mara406': { 
         name: "Mara Voss", 
         greeting: "“I'm busy, Detective. Make your questions count.”", 
         clues: ["Edward's Corruption Files", "Station Cafe Meeting", "8:25 PM Train Ticket"], 
         hintText: "MANDATORY SYSTEM HINT: Check her alibi. Ask her: 'Did you leave the station before the murder?'", 
         persona: "You are Mara Voss, politician's assistant. Controlled, private, slightly defensive. Edward Harrow was investigating your employer. You met him at the cafe, but your train ticket proves you left the station at 8:25 PM, before the murder. Short answers (1-3 sentences)." 
     },
-    '406_samuel406': { 
+    'samuel406': { 
         name: "Samuel Reed", 
         greeting: "“The Midnight Express runs on schedule, Detective. What is it?”", 
         clues: ["Repaired Uniform", "Cabin 7 Access", "The Missing Grey Coat"], 
         hintText: "MANDATORY SYSTEM HINT: Confront him with physical evidence. Ask him: 'What was Edward wearing?' to catch his coat slip-up.", 
         persona: "You are Samuel Reed, railway conductor and the secret killer of Case 406. Professional, calm, but harboring corruption guilt. You stabbed Edward at 8:22 PM, hid him in a trunk, used your trolley to place him in Cabin 7, and slipped up by mentioning his grey coat before the body was found. Short answers (1-3 sentences)." 
     },
-    '406_leo406': { 
+    'leo406': { 
         name: "Leo Harrow", 
         greeting: "“If this is about the money, I already told you everything.”", 
         clues: ["Argument with Edward", "Luggage Room", "CCTV Alibi"], 
         hintText: "MANDATORY SYSTEM HINT: Verify his whereabouts. Ask him: 'Were you near the luggage room and what does the CCTV show?'", 
         persona: "You are Leo Harrow, Edward's unemployed brother. Defensive, stressed, broke. You argued with Edward about money and were near the luggage room, but station CCTV proves you left at 8:18 PM. Short answers (1-3 sentences)." 
     },
-    '406_eliza406': { 
+    'eliza406': { 
         name: "Eliza Morrow", 
         greeting: "“The station cafe is closed, Detective. Speak quickly.”", 
         clues: ["Closing Time Lie", "Her Secret Son", "Who pushed the trolley?"], 
@@ -169,7 +172,6 @@ function startInterrogation(caseNum, suspectKey) {
     const cb = document.getElementById(`chat-box-${caseNum}`);
     cb.innerHTML = ''; 
     
-    // Display the first dialogue immediately
     addMessage(caseNum, suspect.greeting, 'ai');
 
     const ca = document.getElementById(`clue-area-${caseNum}`);
@@ -222,7 +224,6 @@ async function sendMessage(caseNum) {
     addMessage(caseNum, text, 'user');
     ui.value = '';
     
-    // Trigger System Assist when exactly 2 questions are remaining (at Question 6)
     if (questionsRemaining === 2) {
         setTimeout(() => {
             addMessage(caseNum, `🚨 <strong>[SYSTEM ASSIST ALERT]</strong><br>${suspectData[currentSuspectKey].hintText}`, 'system', true);
