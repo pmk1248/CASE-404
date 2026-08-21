@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Ambient Audio Player Bar -->
+<div id="ambient-audio-bar" style="position: fixed; bottom: 15px; left: 15px; z-index: 1000; background: #161b22; border: 1px solid #30363d; padding: 8px 12px; border-radius: 6px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: #8b949e;">
+    <span>🎵 Case Atmosphere: <strong id="current-audio-label" style="color: #e3b341;">Muted</strong></span>
+    <button onclick="toggleAudio()" id="audio-toggle-btn" style="background: #21262d; color: #58a6ff; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; cursor: pointer;">Play Ambient</button>
+</div>
+<audio id="case-audio" loop></audio>
 
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="main-sidebar" style="display: none;">
