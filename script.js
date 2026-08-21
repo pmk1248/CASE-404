@@ -332,34 +332,9 @@ function revealAnswer(caseNum, killerName) {
     checkVerdict(caseNum, killerName);
 }
 // --- BACKGROUND AUDIO SYSTEM ---
+// Case Audio Playlists (Reliable direct audio streams)
 const caseAudioTracks = {
-    '404': 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=dark-mystery-trailer-110663.mp3',
-    '405': 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c365851d.mp3?filename=detective-noir-10702.mp3',
-    '406': 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=suspense-ambient-10116.mp3'
+    '404': 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Beethoven_Moonlight_Sonata_%281st_movement%29.ogg', // Classical eerie mystery vibe
+    '405': 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Chopin_Nocturne_Op_9_No_2.ogg', // Noir suspense vibe
+    '406': 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Gymnop%C3%A9die_No._1_%28Eric_Satie%29.ogg' // Melancholic train / detective vibe
 };
-
-let isAudioPlaying = false;
-
-function toggleAudio() {
-    const audioPlayer = document.getElementById('case-audio');
-    const audioBtn = document.getElementById('audio-toggle-btn');
-    const audioLabel = document.getElementById('current-audio-label');
-    
-    if (isAudioPlaying) {
-        audioPlayer.pause();
-        isAudioPlaying = false;
-        audioBtn.innerText = "Play Ambient";
-        audioLabel.innerText = "Muted";
-    } else {
-        if (activeCase === 'hub') {
-            audioPlayer.src = caseAudioTracks['404'];
-        }
-        audioPlayer.play().then(() => {
-            isAudioPlaying = true;
-            audioBtn.innerText = "Mute Ambient";
-            audioLabel.innerText = activeCase === 'hub' ? "Playing Case 404" : `Playing Case ${activeCase}`;
-        }).catch(e => {
-            alert("Click anywhere on the page first, then click Play Ambient.");
-        });
-    }
-}
