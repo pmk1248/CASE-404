@@ -25,7 +25,7 @@ export default async (req, context) => {
                     { role: 'user', content: text }
                 ],
                 temperature: 0.7,
-                max_tokens: 150
+                max_tokens: 400
             })
         });
 
@@ -35,8 +35,14 @@ export default async (req, context) => {
             return new Response(JSON.stringify({ reply: "GROQ API ERROR: " + (data.error.message || JSON.stringify(data.error)) }), { status: 200 });
         }
 
-        const reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : "The suspect remains silent.";
+        let reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : "The suspect remains silent.";
         
+        // Clean up any trailing cut-off sentences automatically if they exceed punctuation
+        const lastPunctuation = Math.max(reply.lastIndexOf('.'), reply.lastIndexOf('?'), reply.lastIndexOf('!'));
+        if (lastPunctuation !== -1 && lastPunctuation < reply.length - 1) {
+            reply = reply.substring(0, lastPunctuation + 1);
+        }
+
         return new Response(JSON.stringify({ reply }), { status: 200, headers: { 'Content-Type': 'application/json' } });
     } catch (error) {
         return new Response(JSON.stringify({ reply: "SERVER EXCEPTION: " + error.message }), { status: 200 });
