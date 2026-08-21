@@ -1,4 +1,3 @@
-/* --- GLOBAL STYLES & FONTS (VIDEO GAME TERMINAL AESTHETIC) --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +6,8 @@
 }
 
 body {
-    background-color: #0d1117; /* Deep terminal background */
-    color: #c9d1d9; /* Standard text color */
+    background-color: #0d1117;
+    color: #c9d1d9;
     display: flex;
     height: 100vh;
     overflow: hidden;
@@ -20,10 +19,8 @@ h2 { font-size: 18px; margin-bottom: 10px; margin-top: 25px; }
 
 p, ul { line-height: 1.6; font-size: 15px; }
 ul { margin-left: 20px; margin-top: 10px; }
-
 .center-text { text-align: center; }
 
-/* --- THE YELLOW ACCENTS --- */
 .accent-yellow { color: #e3b341 !important; }
 .tile {
     background: #161b22;
@@ -35,12 +32,27 @@ ul { margin-left: 20px; margin-top: 10px; }
 }
 .tile h2 { margin-top: 0; }
 
-/* --- CUSTOM INTRO BANNER --- */
+.profile-banner-container {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    border: 2px solid #e3b341;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background: #000;
+}
+
+.profile-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 .intro-banner {
     position: relative;
     background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
     border: 1px solid #30363d;
-    border-bottom: 3px solid #e3b341;
     border-radius: 4px;
     padding: 50px 20px;
     text-align: center;
@@ -68,23 +80,29 @@ ul { margin-left: 20px; margin-top: 10px; }
     pointer-events: none;
 }
 
-/* --- SIDEBAR NAVIGATION --- */
 .sidebar {
-    width: 260px;
+    width: 280px;
     background-color: #161b22;
     border-right: 1px solid #30363d;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    overflow-y: auto;
 }
 
 .sidebar-title {
     color: #58a6ff;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     letter-spacing: 2px;
     border: none;
+    font-size: 16px;
+    word-break: break-word;
+}
+
+.sidebar select {
+    text-overflow: ellipsis;
 }
 
 .sidebar button {
@@ -93,10 +111,11 @@ ul { margin-left: 20px; margin-top: 10px; }
     color: #c9d1d9;
     padding: 12px 15px;
     text-align: left;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 4px;
     transition: 0.2s ease;
+    word-break: break-word;
 }
 
 .sidebar button:hover, .sidebar button.active-nav {
@@ -105,7 +124,6 @@ ul { margin-left: 20px; margin-top: 10px; }
     border-color: #1f6feb;
 }
 
-/* --- DASHBOARD AREA --- */
 .dashboard {
     flex: 1;
     padding: 40px;
@@ -115,7 +133,6 @@ ul { margin-left: 20px; margin-top: 10px; }
 .tab-content { display: none; max-width: 1200px; margin: 0 auto; }
 .tab-content.active { display: block; }
 
-/* Suspect Text Grid */
 .suspect-text-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -129,13 +146,12 @@ ul { margin-left: 20px; margin-top: 10px; }
     border-radius: 4px;
 }
 
-/* --- INTERROGATION FULL PAGE MENU --- */
 .full-page-menu {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 200px); /* Utilizes the whole page */
+    height: calc(100vh - 200px);
 }
 
 .suspect-select-btn {
@@ -153,7 +169,6 @@ ul { margin-left: 20px; margin-top: 10px; }
 .suspect-select-btn:hover { background-color: #e0e0e0 !important; }
 .purple-icon { color: #4a148c; margin-right: 6px; font-size: 18px; }
 
-/* --- INTERROGATION SPLIT LAYOUT --- */
 .interrogation-header {
     display: flex;
     justify-content: space-between;
@@ -162,7 +177,6 @@ ul { margin-left: 20px; margin-top: 10px; }
     padding: 15px 25px;
     border: 1px solid #30363d;
     border-radius: 4px 4px 0 0;
-    margin-bottom: 0;
 }
 
 .back-link {
@@ -183,9 +197,20 @@ ul { margin-left: 20px; margin-top: 10px; }
     border-radius: 4px;
 }
 
+/* Interrogation Instruction Box Style */
+.interrogation-note {
+    background-color: #161b22;
+    color: #8b949e;
+    padding: 10px 20px;
+    font-size: 13px;
+    border-left: 4px solid #58a6ff;
+    border-right: 1px solid #30363d;
+    border-bottom: 1px solid #30363d;
+}
+
 .split-layout {
     display: flex;
-    height: 600px;
+    height: 550px;
     border: 1px solid #30363d;
     border-top: none;
     border-radius: 0 0 4px 4px;
@@ -227,19 +252,18 @@ ul { margin-left: 20px; margin-top: 10px; }
     border: 1px solid #30363d;
 }
 
-/* System Hint Message */
 .system-msg {
     align-self: center;
-    background-color: transparent !important;
-    color: #ff7b72 !important; /* Red alert color */
-    border: 1px dashed #ff7b72 !important;
-    font-style: italic;
+    background-color: #1f1212 !important;
+    color: #ff7b72 !important;
+    border: 1px solid #ff7b72 !important;
     font-weight: bold;
-    text-align: center;
-    width: 90%;
+    text-align: left;
+    width: 95%;
+    padding: 12px 15px;
+    border-radius: 6px;
 }
 
-/* Suggested Clue Buttons */
 .clue-area {
     display: flex;
     flex-wrap: wrap;
@@ -259,7 +283,6 @@ ul { margin-left: 20px; margin-top: 10px; }
 }
 .clue-area button:hover { background: #1f6feb; color: #fff; }
 
-/* Typing Input */
 .input-area {
     display: flex;
     background-color: #161b22;
@@ -289,9 +312,7 @@ ul { margin-left: 20px; margin-top: 10px; }
     cursor: pointer;
     font-weight: 700;
 }
-.input-area button:disabled { background-color: #4b5563; cursor: not-allowed; }
 
-/* --- DETECTIVE'S NOTEPAD --- */
 .notepad-section {
     flex: 1;
     display: flex;
@@ -317,9 +338,7 @@ ul { margin-left: 20px; margin-top: 10px; }
     line-height: 1.6;
     outline: none;
 }
-.notes-textarea:focus { border-color: #e3b341; }
 
-/* --- VERDICT STACKED BUTTONS --- */
 .verdict-grid { 
     display: flex; 
     flex-direction: column; 

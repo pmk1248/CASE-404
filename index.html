@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASE: 404 - AI Detective Dashboard</title>
+    <title>DETECTIVE OS - CASE 404, 405 & 406</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <h2 class="sidebar-title">CASE: 404</h2>
-        <button onclick="openTab('home')">🏠 Home</button>
+    <nav class="sidebar" id="main-sidebar" style="display: none;">
+        <h2 class="sidebar-title" id="sidebar-case-title">DETECTIVE OS</h2>
+        
+        <div style="margin-bottom: 15px;">
+            <label style="font-size: 12px; color: #8b949e; display: block; margin-bottom: 5px;">ACTIVE CASE:</label>
+            <select id="case-selector" onchange="switchCase(this.value)" style="width: 100%; background: #0d1117; color: #e3b341; border: 1px solid #30363d; padding: 8px; border-radius: 4px; font-family: inherit;">
+                <option value="hub">📋 Case Selection Hub</option>
+                <option value="404">Case 404: The Silence of Blackwood Manor</option>
+                <option value="405">Case 405: The Heir Who Never Died</option>
+                <option value="406">Case 406: The Last Passenger</option>
+            </select>
+        </div>
+
+        <button onclick="openTab('home')">🏠 Home / Hub</button>
         <button onclick="openTab('files')">📁 Case Files</button>
         <button onclick="openTab('evidence')">🔍 Evidence</button>
         <button onclick="openTab('timeline')">⏱️ Timeline</button>
@@ -21,212 +32,371 @@
     </nav>
 
     <!-- Main Dashboard Area -->
-    <main class="dashboard">
+    <main class="dashboard" style="width: 100%;">
         
-        <!-- Home Section -->
-        <section id="home" class="tab-content">
-            <div class="intro-banner">
+        <!-- ==================== CASE SELECTION HUB (HOME) ==================== -->
+        <div class="case-view" id="case-hub-view">
+            <div class="intro-banner" style="border-bottom: 3px solid #e3b341; max-width: 900px; margin: 40px auto;">
                 <div class="scanline"></div>
-                <h1 class="glitch-text">CASE 404</h1>
-                <h2>THE SILENCE OF BLACKWOOD MANOR</h2>
-                <p class="accent-yellow">17 OCTOBER 1894 • RAVENSHIRE</p>
-            </div>
-            <p>At 11:43 PM, the lights went out.<br>Fifteen minutes later, they returned.<br>Lord Edmund Blackwood was dead.</p><br>
-            <p>He was found inside his locked study.<br>The door was locked.<br>The window was locked.</p><br>
-            <p>Four people were inside the manor.<br>Earlier that evening, Lord Blackwood had made one announcement:</p><br>
-            <p style="color: #58a6ff;"><em>“At midnight, I will reveal the truth about Thomas Vale.”</em></p><br>
-            <p>Nobody knew what that meant.<br>But before midnight—<br>Someone made sure he would never speak again.</p><br>
-            <p><strong>Your mission:</strong> Find the killer.</p>
-        </section>
-
-        <!-- Case Files Section -->
-        <section id="files" class="tab-content">
-            <h1>📁 CASE FILES</h1>
-            <div class="tile">
-                <h2 class="accent-yellow">THE VICTIM</h2>
-                <ul>
-                    <li><strong>Name:</strong> Lord Edmund Blackwood</li>
-                    <li><strong>Age:</strong> 62</li>
-                    <li><strong>Occupation:</strong> Industrialist</li>
-                    <li><strong>Status:</strong> Dead</li>
-                </ul><br>
-                <p>Lord Blackwood was wealthy, powerful, and feared.<br>Twenty-five years earlier, a factory worker named Thomas Vale died in a supposed accident at Blackwood Industrial Works.<br>Tonight, Lord Blackwood planned to reveal the truth.<br>He never got the chance.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">Cause of Death</h2>
-                <p>Poisoning.<br>The poison: Aconitine.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">THE SECRET</h2>
-                <p>A partially burned letter was found in the fireplace.<br>Only one sentence could be read:</p><br>
-                <p style="color: #58a6ff;"><em>“You took everything from me.”</em></p><br>
-                <p>Another document revealed that Lord Blackwood was planning to change his will.<br>His nephew, Julian, would inherit nothing.<br>Someone else would receive everything.</p>
-            </div>
-        </section>
-
-        <!-- Evidence Section -->
-        <section id="evidence" class="tab-content">
-            <h1>🔍 EVIDENCE</h1>
-            <div class="tile">
-                <h2 class="accent-yellow">01 — THE POISONED DRINK 🥃</h2>
-                <p>Aconitine was found in Lord Blackwood's brandy glass.<br>But the bottle itself was clean.<br>The poison was added after the drink was poured.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">02 — THE SECOND GLASS 🍵</h2>
-                <p>An empty glass was found nearby.<br>It contained traces of: Sugar and Lavender.<br>Only one suspect was known to regularly use lavender sugar.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">03 — THE BROKEN WATCH ⌚</h2>
-                <p>Lord Blackwood's pocket watch was found beneath his desk.<br>It had stopped at: <strong>11:47 PM</strong><br>The watch stopped because it struck the floor.<br>A struggle may have occurred.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">04 — THE CLEAN KEY 🔑</h2>
-                <p>The study door was locked from the inside.<br>The key was found on the floor.<br>But strangely— The key was completely clean.<br>The study floor was dusty.<br>Someone may have placed the key there after leaving the room.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">05 — THE FOOTPRINT 👣</h2>
-                <p>A footprint was found outside the study window.<br>But heavy rain had been falling for hours.<br>The footprint was completely dry.<br>It was planted.</p>
-            </div>
-            <div class="tile">
-                <h2 class="accent-yellow">06 — THE COAT BUTTON 🔘</h2>
-                <p>A button matching Julian's coat was found beneath the desk.<br>But the thread attached to it was dry.<br>Was Julian inside the study? Or was someone trying to frame him?</p>
-            </div>
-        </section>
-
-        <!-- Timeline Section -->
-        <section id="timeline" class="tab-content">
-            <h1>⏱️ TIMELINE</h1>
-            <div class="tile">
-                <ul>
-                    <li><strong class="accent-yellow">7:30 PM:</strong> The four suspects arrive at Blackwood Manor. A storm begins.</li>
-                    <li><strong class="accent-yellow">8:15 PM:</strong> Dinner begins. Lord Blackwood appears nervous.</li>
-                    <li><strong class="accent-yellow">9:05 PM:</strong> Lord Blackwood announces: <em>“At midnight, I will reveal the truth about Thomas Vale.”</em> Everyone reacts.</li>
-                    <li><strong class="accent-yellow">9:30 PM:</strong> Julian argues with Lord Blackwood. Witnesses hear: <em>“You can't take everything from me!”</em></li>
-                    <li><strong class="accent-yellow">10:22 PM:</strong> Clara enters Lord Blackwood's study. She leaves seven minutes later, visibly upset.</li>
-                    <li><strong class="accent-yellow">10:40 PM:</strong> Lord Blackwood enters his study. He takes a bottle of brandy with him.</li>
-                    <li><strong class="accent-yellow">10:55 PM:</strong> Mrs. Graves visits the study. She claims Lord Blackwood was alive.</li>
-                    <li><strong class="accent-yellow">11:25 PM:</strong> Dr. Vale leaves the drawing room. He claims he went to his bedroom. No one confirms this.</li>
-                    <li><strong class="accent-yellow">11:43 PM — BLACKOUT:</strong> The entire manor goes dark. For fifteen minutes, nobody can account for everyone.</li>
-                    <li><strong class="accent-yellow">11:47 PM:</strong> A loud crash comes from the study. Lord Blackwood's watch stops.</li>
-                    <li><strong class="accent-yellow">11:51 PM:</strong> A woman screams. Nobody admits it was them.</li>
-                    <li><strong class="accent-yellow">11:58 PM — LIGHTS RETURN:</strong> The study door is locked. Lord Blackwood does not answer.</li>
-                    <li><strong class="accent-yellow">12:05 AM:</strong> The door is forced open. Lord Blackwood is dead.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Suspects Section -->
-        <section id="suspects" class="tab-content active">
-            <h1>👥 THE SUSPECTS</h1>
-            
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="case charc 1.jpeg" alt="Case Characters" style="max-width: 100%; border: 2px solid #e3b341; border-radius: 4px;">
+                <h1 class="glitch-text">DETECTIVE OS</h1>
+                <h2>WELCOME, DETECTIVE</h2>
+                <p class="accent-yellow">SELECT A CASE FILE TO BEGIN YOUR INVESTIGATION</p>
             </div>
 
-            <div class="suspect-text-grid">
-                <div class="suspect-bio">
-                    <h2 class="accent-yellow">SUSPECT 01 — JULIAN BLACKWOOD</h2>
-                    <p><strong>Profile:</strong> Charming. Reckless. Deeply in debt. Lord Blackwood planned to remove Julian from his will.</p>
-                    <p><strong>Suspicious Facts:</strong> Publicly argued with the victim. No confirmed alibi during the blackout. His coat button was found in the study.</p>
+            <div style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 20px;">
+                <div class="tile" style="border-left-color: #58a6ff; cursor: pointer;" onclick="switchCaseAndOpen('404', 'suspects')">
+                    <h2 style="color: #58a6ff;">Case 404: The Silence of Blackwood Manor</h2>
+                    <p>A locked room. A dead lord. And a truth someone wanted to bury.</p>
+                    <span style="font-size: 12px; color: #e3b341; display: inline-block; margin-top: 10px;">🔗 Connected to Case 405 → Click to Solve</span>
                 </div>
-                <div class="suspect-bio">
-                    <h2 class="accent-yellow">SUSPECT 02 — CLARA WHITMORE</h2>
-                    <p><strong>Profile:</strong> Quiet. Intelligent. Returned to Ravenshire after twenty years. She once loved Lord Blackwood's missing son.</p>
-                    <p><strong>Suspicious Facts:</strong> Met privately with the victim. Left the study visibly upset. Knows about poisonous plants. Her gloves were wet.</p>
+
+                <div class="tile" style="border-left-color: #e3b341; cursor: pointer;" onclick="switchCaseAndOpen('405', 'suspects')">
+                    <h2 class="accent-yellow">Case 405: The Heir Who Never Died</h2>
+                    <p>A missing heir. A hidden truth. And a murder that reveals more.</p>
+                    <span style="font-size: 12px; color: #e3b341; display: inline-block; margin-top: 10px;">🔗 Sequel to Case 404 → Click to Solve</span>
                 </div>
-                <div class="suspect-bio">
-                    <h2 class="accent-yellow">SUSPECT 03 — DR. ADRIAN VALE</h2>
-                    <p><strong>Profile:</strong> Calm. Intelligent. Trusted. But he has one secret. His father was Thomas Vale.</p>
-                    <p><strong>Suspicious Facts:</strong> Expert knowledge of poison. No confirmed alibi. Had access to the lavender sugar. Lied about his movements.</p>
-                </div>
-                <div class="suspect-bio">
-                    <h2 class="accent-yellow">SUSPECT 04 — MRS. ELEANOR GRAVES</h2>
-                    <p><strong>Profile:</strong> Worked for the family for twenty-eight years. She knows every room, every key, and every secret.</p>
-                    <p><strong>Suspicious Facts:</strong> Last confirmed person to see Lord Blackwood alive. Had access to the study and lavender sugar.</p>
+
+                <div class="tile" style="border-left-color: #ff7b72; cursor: pointer;" onclick="switchCaseAndOpen('406', 'suspects')">
+                    <h2 class="accent-yellow" style="color: #ff7b72;">Case 406: The Last Passenger</h2>
+                    <p>A train arrives at its final station. Every passenger leaves — except one.</p>
+                    <span style="font-size: 12px; color: #ff7b72; display: inline-block; margin-top: 10px;">Independent Case → Click to Solve</span>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Interrogation Room (WITH AI CHAT & NOTEPAD) -->
-        <section id="interrogation" class="tab-content">
-            <h1>🎙️ LIVE INTERROGATION ROOM</h1>
-            
-            <!-- Full Page Centered Menu -->
-            <div id="suspect-menu" class="full-page-menu">
-                <p style="color: #8b949e; margin-bottom: 20px; font-size: 16px;">Select someone to interrogate:</p>
-                
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 700px;">
-                    <button class="suspect-select-btn" onclick="startInterrogation('julian')">
-                        <span class="purple-icon">👤</span> Julian Blackwood
-                    </button>
-                    <button class="suspect-select-btn" onclick="startInterrogation('clara')">
-                        <span class="purple-icon">👤</span> Clara Whitmore
-                    </button>
-                    <button class="suspect-select-btn" onclick="startInterrogation('adrian')">
-                        <span class="purple-icon">👤</span> Dr. Adrian Vale
-                    </button>
-                    <button class="suspect-select-btn" onclick="startInterrogation('eleanor')">
-                        <span class="purple-icon">👤</span> Mrs. Eleanor Graves
-                    </button>
+
+        <!-- ==================== CASE 404 VIEW ==================== -->
+        <div class="case-view" id="case-404-view" style="display: none;">
+            <section id="home-404" class="tab-content">
+                <div class="profile-banner-container">
+                    <img src="case 1( profile).png" alt="Case 404 Wallpaper" class="profile-banner-img">
                 </div>
-            </div>
+                <p>At 11:43 PM, the lights went out. Fifteen minutes later, they returned. Lord Edmund Blackwood was dead.</p>
+                <p>He was found inside his locked study. The door was locked. The window was locked.</p><br>
+                <p>Four people were inside the manor. Earlier that evening, Lord Blackwood had made one announcement:</p><br>
+                <p style="color: #58a6ff;"><em>“At midnight, I will reveal the truth about Thomas Vale.”</em></p><br>
+                <p>Nobody knew what that meant. But before midnight—someone made sure he would never speak again.</p><br>
+                <p><strong>Your mission:</strong> Find the killer.</p>
+            </section>
 
-            <div id="interrogation-session" style="display: none;">
-                
-                <div class="interrogation-header">
-                    <button class="back-link" onclick="backToMenu()">← Change Suspect</button>
-                    <h2 id="current-suspect-name" style="margin:0; color: #58a6ff;">INTERROGATING: NAME</h2>
-                    <!-- The 5 Question Tracker -->
-                    <div class="question-tracker">
-                        <span style="color:#8b949e; font-size: 14px;">Questions Remaining: </span>
-                        <strong id="q-count" style="color:#e3b341; font-size: 18px;">5</strong><strong style="color:#8b949e;">/5</strong>
+            <section id="files-404" class="tab-content">
+                <h1>📁 CASE FILES — Case 404: The Silence of Blackwood Manor</h1>
+                <div class="tile">
+                    <h2 class="accent-yellow">THE VICTIM</h2>
+                    <p><strong>Lord Edmund Blackwood</strong> (Age 62, Industrialist, Status: Dead)</p>
+                    <p>Lord Blackwood was wealthy, powerful, and feared. Twenty-five years earlier, a factory worker named Thomas Vale died in a supposed accident at Blackwood Industrial Works. Tonight, Lord Blackwood planned to reveal the truth. He never got the chance.</p>
+                </div>
+                <div class="tile">
+                    <h2 class="accent-yellow">Cause of Death</h2>
+                    <p>Poisoning. The poison: Aconitine.</p>
+                </div>
+                <div class="tile">
+                    <h2 class="accent-yellow">THE SECRET</h2>
+                    <p>A partially burned letter was found in the fireplace. Only one sentence could be read: <em>“You took everything from me.”</em></p>
+                    <p>Another document revealed that Lord Blackwood was planning to change his will. His nephew, Julian, would inherit nothing. Someone else would receive everything.</p>
+                </div>
+            </section>
+
+            <section id="evidence-404" class="tab-content">
+                <h1>🔍 EVIDENCE — Case 404: The Silence of Blackwood Manor</h1>
+                <div class="tile"><h2 class="accent-yellow">01 — THE POISONED DRINK 🥃</h2><p>Aconitine was found in Lord Blackwood's brandy glass. But the bottle itself was clean. The poison was added after the drink was poured.</p></div>
+                <div class="tile"><h2 class="accent-yellow">02 — THE SECOND GLASS 🍵</h2><p>An empty glass was found nearby. It contained traces of sugar and lavender. Only one suspect was known to regularly use lavender sugar.</p></div>
+                <div class="tile"><h2 class="accent-yellow">03 — THE BROKEN WATCH ⌚</h2><p>Lord Blackwood's pocket watch was found beneath his desk. It stopped at 11:47 PM because it struck the floor during a struggle.</p></div>
+                <div class="tile"><h2 class="accent-yellow">04 — THE CLEAN KEY 🔑</h2><p>The study door was locked from the inside. The key was found on the floor, but it was completely clean despite the dusty floor.</p></div>
+                <div class="tile"><h2 class="accent-yellow">05 — THE FOOTPRINT 👣</h2><p>A footprint was found outside the study window, but heavy rain had been falling for hours. The footprint was completely dry—it was planted.</p></div>
+                <div class="tile"><h2 class="accent-yellow">06 — THE COAT BUTTON 🔘</h2><p>A button matching Julian's coat was found beneath the desk, but the attached thread was dry. Was Julian inside, or was someone framing him?</p></div>
+            </section>
+
+            <section id="timeline-404" class="tab-content">
+                <h1>⏱️ TIMELINE — Case 404: The Silence of Blackwood Manor</h1>
+                <div class="tile">
+                    <ul>
+                        <li><strong class="accent-yellow">7:30 PM:</strong> Suspects arrive; storm begins.</li>
+                        <li><strong class="accent-yellow">8:15 PM:</strong> Dinner begins; Blackwood appears nervous.</li>
+                        <li><strong class="accent-yellow">9:05 PM:</strong> Blackwood announces: <em>“At midnight, I will reveal the truth about Thomas Vale.”</em></li>
+                        <li><strong class="accent-yellow">9:30 PM:</strong> Julian argues with Blackwood: <em>“You can't take everything from me!”</em></li>
+                        <li><strong class="accent-yellow">10:22 PM:</strong> Clara enters the study, leaving 7 minutes later visibly upset.</li>
+                        <li><strong class="accent-yellow">10:40 PM:</strong> Blackwood enters his study with brandy.</li>
+                        <li><strong class="accent-yellow">10:55 PM:</strong> Mrs. Graves visits the study; claims Blackwood was alive.</li>
+                        <li><strong class="accent-yellow">11:25 PM:</strong> Dr. Vale leaves drawing room, claiming he went to his bedroom.</li>
+                        <li><strong class="accent-yellow">11:43 PM — BLACKOUT:</strong> Manor goes dark for 15 minutes.</li>
+                        <li><strong class="accent-yellow">11:47 PM:</strong> Loud crash; watch stops.</li>
+                        <li><strong class="accent-yellow">11:51 PM:</strong> A woman screams.</li>
+                        <li><strong class="accent-yellow">12:05 AM:</strong> Door forced open; Blackwood is dead.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="suspects-404" class="tab-content active">
+                <h1>👥 THE SUSPECTS — Case 404: The Silence of Blackwood Manor</h1>
+                <div style="text-align: center; margin-bottom: 20px;"><img src="case charc 1.jpeg" alt="Case 404" style="max-width: 100%; border: 2px solid #e3b341; border-radius: 4px;"></div>
+                <div class="suspect-text-grid">
+                    <div class="suspect-bio"><h2 class="accent-yellow">JULIAN BLACKWOOD</h2><p>Age 29, Nephew. Charming, reckless, and deeply in debt. Planned to be removed from the will.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">CLARA WHITMORE</h2><p>Age 34, Family connection. Quiet, intelligent, returned after 20 years. Loved Blackwood's missing son.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">DR. ADRIAN VALE</h2><p>Age 42, Personal Physician. Calm, trusted, but hides his true identity as Thomas Vale's son.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">MRS. ELEANOR GRAVES</h2><p>Age 51, Housekeeper of 28 years. Knows every room, key, and dark secret.</p></div>
+                </div>
+            </section>
+
+            <section id="interrogation-404" class="tab-content">
+                <h1>🎙️ LIVE INTERROGATION — Case 404: The Silence of Blackwood Manor</h1>
+                <div id="suspect-menu-404" class="full-page-menu">
+                    <p style="color: #8b949e; margin-bottom: 20px;">Select someone to interrogate (8 Questions max):</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                        <button class="suspect-select-btn" onclick="startInterrogation('404', 'julian')"><span class="purple-icon">👤</span> Julian Blackwood</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('404', 'clara')"><span class="purple-icon">👤</span> Clara Whitmore</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('404', 'adrian')"><span class="purple-icon">👤</span> Dr. Adrian Vale</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('404', 'eleanor')"><span class="purple-icon">👤</span> Mrs. Eleanor Graves</button>
                     </div>
                 </div>
-                
-                <!-- Split Layout: Chat + Notepad -->
-                <div class="split-layout">
-                    
-                    <!-- Left: AI Chat -->
-                    <div class="chat-section">
-                        <div id="chat-box" class="chat-box"></div>
-                        
-                        <!-- Quick Clue Buttons (Optional) -->
-                        <div id="clue-area" class="clue-area"></div>
-                        
-                        <!-- AI Typing Input -->
-                        <div class="input-area">
-                            <input type="text" id="user-input" placeholder="Type your question for the suspect...">
-                            <button id="send-btn" onclick="sendMessage()">Send</button>
+                <div id="interrogation-session-404" style="display: none;">
+                    <div class="interrogation-header">
+                        <button class="back-link" onclick="backToMenu('404')">← Change Suspect</button>
+                        <h2 id="current-suspect-name-404" style="margin:0; color: #58a6ff;">INTERROGATING: NAME</h2>
+                        <div class="question-tracker"><span style="color:#8b949e; font-size: 14px;">Questions: </span><strong id="q-count-404" style="color:#e3b341;">8</strong><strong style="color:#8b949e;">/8</strong></div>
+                    </div>
+                    <!-- Interrogation Instruction Note -->
+                    <div class="interrogation-note">
+                        💡 <strong>Detective Note:</strong> You have an 8-question limit per suspect. Use the suggested clue chips below or type your own questions. If you reach Question 6 (2 remaining) without finding the truth, the system will provide a mandatory hint.
+                    </div>
+                    <div class="split-layout">
+                        <div class="chat-section">
+                            <div id="chat-box-404" class="chat-box"></div>
+                            <div id="clue-area-404" class="clue-area"></div>
+                            <div class="input-area"><input type="text" id="user-input-404" placeholder="Ask your question..."><button id="send-btn-404" onclick="sendMessage('404')">Send</button></div>
                         </div>
+                        <div class="notepad-section"><div class="notepad-header"><h3 style="margin:0; color: #c9d1d9;">📝 Notes</h3></div><textarea id="detective-notes-404" class="notes-textarea" placeholder="Record clues..."></textarea></div>
                     </div>
-
-                    <!-- Right: Detective's Notepad -->
-                    <div class="notepad-section">
-                        <div class="notepad-header">
-                            <h3 style="margin:0; color: #c9d1d9;">📝 Detective's Notes</h3>
-                        </div>
-                        <textarea id="detective-notes" class="notes-textarea" placeholder="Record your deductions, contradictions, and evidence notes here... (Saves automatically)"></textarea>
-                    </div>
-
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Final Verdict Section -->
-        <section id="verdict" class="tab-content">
-            <h1 class="center-text">⚖️ FINAL VERDICT</h1>
-            <p class="center-text" style="margin-bottom: 20px;"><strong>WHO KILLED LORD BLACKWOOD?</strong></p>
-            
-            <div class="verdict-grid" id="verdict-buttons">
-                <button onclick="checkVerdict('Julian')">Julian Blackwood</button>
-                <button onclick="checkVerdict('Clara')">Clara Whitmore</button>
-                <button onclick="checkVerdict('Adrian')">Dr. Adrian Vale</button>
-                <button onclick="checkVerdict('Eleanor')">Mrs. Eleanor Graves</button>
-            </div>
-            <br>
-            <!-- Hidden Result Block -->
-            <div id="verdict-result" style="display: none; background: #010409; padding: 30px; border-radius: 8px; border: 1px solid #e3b341;"></div>
-        </section>
+            <section id="verdict-404" class="tab-content">
+                <h1 class="center-text">⚖️ FINAL VERDICT — Case 404: The Silence of Blackwood Manor</h1>
+                <p class="center-text" style="margin-bottom: 20px;"><strong>WHO KILLED LORD BLACKWOOD?</strong></p>
+                <div class="verdict-grid" id="verdict-buttons-404">
+                    <button onclick="checkVerdict('404', 'Julian')">Julian Blackwood</button>
+                    <button onclick="checkVerdict('404', 'Clara')">Clara Whitmore</button>
+                    <button onclick="checkVerdict('404', 'Adrian')">Dr. Adrian Vale</button>
+                    <button onclick="checkVerdict('404', 'Eleanor')">Mrs. Eleanor Graves</button>
+                </div>
+                <div id="verdict-result-404" style="display: none; background: #010409; padding: 30px; border-radius: 8px; border: 1px solid #e3b341;"></div>
+            </section>
+        </div>
+
+
+        <!-- ==================== CASE 405 VIEW ==================== -->
+        <div class="case-view" id="case-405-view" style="display: none;">
+            <section id="home-405" class="tab-content">
+                <div class="profile-banner-container">
+                    <img src="case 2(profile).png" alt="Case 405 Wallpaper" class="profile-banner-img">
+                </div>
+                <p>A letter arrives for the detective containing an old photograph showing Lord Blackwood beside Arthur Blackwood, his missing son who disappeared twenty years ago.</p>
+                <p>Before you can investigate, the sender is murdered and the photograph disappears. Who killed the man who knew the truth?</p><br>
+                <p><strong>Your mission:</strong> Solve Henry Collins' murder.</p>
+            </section>
+
+            <section id="files-405" class="tab-content">
+                <h1>📁 CASE FILES — Case 405: The Heir Who Never Died</h1>
+                <div class="tile">
+                    <h2 class="accent-yellow">THE VICTIM</h2>
+                    <p><strong>Henry Collins</strong> (Age 58, Former Solicitor, Status: Dead)</p>
+                    <p>Managed family documents for 30 years and sent the photograph proving Arthur was alive. One hour later, he was found dead inside the archive room.</p>
+                </div>
+                <div class="tile">
+                    <h2 class="accent-yellow">Cause of Death</h2>
+                    <p>🔪 A single stab wound. The photograph was gone.</p>
+                </div>
+                <div class="tile">
+                    <h2 class="accent-yellow">THE SECRET</h2>
+                    <p>Before his death, Henry wrote one sentence: <em>“Arthur was never the enemy.”</em></p>
+                </div>
+            </section>
+
+            <section id="evidence-405" class="tab-content">
+                <h1>🔍 EVIDENCE — Case 405: The Heir Who Never Died</h1>
+                <div class="tile"><h2 class="accent-yellow">01 — THE MURDER WEAPON 🔪</h2><p>A letter opener with Henry's blood was found behind a bookshelf. It belonged to the archive room; the killer brought no weapon.</p></div>
+                <div class="tile"><h2 class="accent-yellow">02 — THE TORN PHOTOGRAPH 🖼️</h2><p>One corner of the missing photo was found in the fireplace, showing Arthur wearing the family ring.</p></div>
+                <div class="tile"><h2 class="accent-yellow">03 — THE BLACK GLOVE 🧤</h2><p>A black glove with a small gold thread caught inside was found beside Henry's body.</p></div>
+                <div class="tile"><h2 class="accent-yellow">04 — THE STOPPED CLOCK ⏰</h2><p>The archive clock was deliberately stopped at 10:16 PM to create a false time of death.</p></div>
+                <div class="tile"><h2 class="accent-yellow">05 — THE LOCKED ARCHIVE 🔐</h2><p>The archive door was locked, but Henry knew all three keyholders. He opened the door willingly.</p></div>
+            </section>
+
+            <section id="timeline-405" class="tab-content">
+                <h1>⏱️ TIMELINE — Case 405: The Heir Who Never Died</h1>
+                <div class="tile">
+                    <ul>
+                        <li><strong class="accent-yellow">8:00 PM:</strong> Henry announces he has proof Arthur is alive.</li>
+                        <li><strong class="accent-yellow">8:30 PM:</strong> Julian demands documents; Henry refuses.</li>
+                        <li><strong class="accent-yellow">9:00 PM:</strong> Clara receives anonymous letter and leaves.</li>
+                        <li><strong class="accent-yellow">9:20 PM:</strong> Mrs. Graves seen near archive corridor.</li>
+                        <li><strong class="accent-yellow">9:45 PM:</strong> Henry tells detective truth will be known before midnight.</li>
+                        <li><strong class="accent-yellow">10:05 PM:</strong> Henry enters archive.</li>
+                        <li><strong class="accent-yellow">10:16 PM:</strong> Archive clock deliberately stopped.</li>
+                        <li><strong class="accent-yellow">10:20 PM:</strong> Victor Hale seen entering corridor.</li>
+                        <li><strong class="accent-yellow">10:25 PM:</strong> Scream heard; Henry Collins found dead.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="suspects-405" class="tab-content active">
+                <h1>👥 THE SUSPECTS — Case 405: The Heir Who Never Died</h1>
+                <div style="text-align: center; margin-bottom: 20px;"><img src="case 2.png" alt="Case 405" style="max-width: 100%; border: 2px solid #e3b341; border-radius: 4px;"></div>
+                <div class="suspect-text-grid">
+                    <div class="suspect-bio"><h2 class="accent-yellow">JULIAN BLACKWOOD</h2><p>Age 29, Nephew. Reckless and in debt. Loses inheritance if Arthur is alive.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">CLARA WHITMORE</h2><p>Age 34, Former Lover. Believed Arthur abandoned her 20 years ago.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">MRS. ELEANOR GRAVES</h2><p>Age 51, Housekeeper. Knows more about Arthur's disappearance than she admits.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">VICTOR HALE</h2><p>Age 47, Fired Estate Manager. Returned unexpectedly on the night of the murder with damaged gold stitching on his coat.</p></div>
+                </div>
+            </section>
+
+            <section id="interrogation-405" class="tab-content">
+                <h1>🎙️ LIVE INTERROGATION — Case 405: The Heir Who Never Died</h1>
+                <div id="suspect-menu-405" class="full-page-menu">
+                    <p style="color: #8b949e; margin-bottom: 20px;">Select someone to interrogate (8 Questions max):</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                        <button class="suspect-select-btn" onclick="startInterrogation('405', 'julian405')"><span class="purple-icon">👤</span> Julian Blackwood</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('405', 'clara405')"><span class="purple-icon">👤</span> Clara Whitmore</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('405', 'eleanor405')"><span class="purple-icon">👤</span> Mrs. Eleanor Graves</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('405', 'victor405')"><span class="purple-icon">👤</span> Victor Hale</button>
+                    </div>
+                </div>
+                <div id="interrogation-session-405" style="display: none;">
+                    <div class="interrogation-header">
+                        <button class="back-link" onclick="backToMenu('405')">← Change Suspect</button>
+                        <h2 id="current-suspect-name-405" style="margin:0; color: #58a6ff;">INTERROGATING: NAME</h2>
+                        <div class="question-tracker"><span style="color:#8b949e; font-size: 14px;">Questions: </span><strong id="q-count-405" style="color:#e3b341;">8</strong><strong style="color:#8b949e;">/8</strong></div>
+                    </div>
+                    <!-- Interrogation Instruction Note -->
+                    <div class="interrogation-note">
+                        💡 <strong>Detective Note:</strong> You have an 8-question limit per suspect. Use the suggested clue chips below or type your own questions. If you reach Question 6 (2 remaining) without finding the truth, the system will provide a mandatory hint.
+                    </div>
+                    <div class="split-layout">
+                        <div class="chat-section">
+                            <div id="chat-box-405" class="chat-box"></div>
+                            <div id="clue-area-405" class="clue-area"></div>
+                            <div class="input-area"><input type="text" id="user-input-405" placeholder="Ask your question..."><button id="send-btn-405" onclick="sendMessage('405')">Send</button></div>
+                        </div>
+                        <div class="notepad-section"><div class="notepad-header"><h3 style="margin:0; color: #c9d1d9;">📝 Notes</h3></div><textarea id="detective-notes-405" class="notes-textarea" placeholder="Record clues..."></textarea></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="verdict-405" class="tab-content">
+                <h1 class="center-text">⚖️ FINAL VERDICT — Case 405: The Heir Who Never Died</h1>
+                <p class="center-text" style="margin-bottom: 20px;"><strong>WHO KILLED HENRY COLLINS?</strong></p>
+                <div class="verdict-grid" id="verdict-buttons-405">
+                    <button onclick="checkVerdict('405', 'Julian')">Julian Blackwood</button>
+                    <button onclick="checkVerdict('405', 'Clara')">Clara Whitmore</button>
+                    <button onclick="checkVerdict('405', 'Eleanor')">Mrs. Eleanor Graves</button>
+                    <button onclick="checkVerdict('405', 'Victor')">Victor Hale</button>
+                </div>
+                <div id="verdict-result-405" style="display: none; background: #010409; padding: 30px; border-radius: 8px; border: 1px solid #e3b341;"></div>
+            </section>
+        </div>
+
+
+        <!-- ==================== CASE 406 VIEW ==================== -->
+        <div class="case-view" id="case-406-view" style="display: none;">
+            <section id="home-406" class="tab-content">
+                <div class="profile-banner-container">
+                    <img src="case 3(profile).png" alt="Case 406 Wallpaper" class="profile-banner-img">
+                </div>
+                <p>The Midnight Express arrives at its final station. The passengers leave. One passenger does not. A man sits alone in Cabin 7. He is dead—and medical examiners confirm he died nearly three hours before the train arrived.</p><br>
+                <p><strong>Your mission:</strong> Find the killer who placed him on the train.</p>
+            </section>
+
+            <section id="files-406" class="tab-content">
+                <h1>📁 CASE FILES — Case 406: The Last Passenger</h1>
+                <div class="tile">
+                    <h2 class="accent-yellow">THE VICTIM</h2>
+                    <p><strong>Edward Harrow</strong> (Age 48, Investigative Journalist, Status: Dead)</p>
+                    <p>Edward exposed corruption. Before boarding, he told a colleague: <em>“By tomorrow morning, someone's career will be over.”</em> His briefcase was found empty.</p>
+                </div>
+                <div class="tile">
+                    <h2 class="accent-yellow">Cause of Death</h2>
+                    <p>🔪 Single stab wound between 8:15 PM and 8:30 PM, before the train departed.</p>
+                </div>
+            </section>
+
+            <section id="evidence-406" class="tab-content">
+                <h1>🔍 EVIDENCE — Case 406: The Last Passenger</h1>
+                <div class="tile"><h2 class="accent-yellow">01 — THE EMPTY BRIEFCASE 💼</h2><p>Contained only a train ticket; documents were missing.</p></div>
+                <div class="tile"><h2 class="accent-yellow">02 — THE STOPPED WATCH ⌚</h2><p>Edward's watch stopped at 8:22 PM from blood and impact.</p></div>
+                <div class="tile"><h2 class="accent-yellow">03 — THE RED THREAD 🧵</h2><p>Found in victim's hand, matching a suspect's red scarf.</p></div>
+                <div class="tile"><h2 class="accent-yellow">04 — THE COFFEE CUP ☕</h2><p>Half-finished, warm coffee placed beside victim after departure.</p></div>
+                <div class="tile"><h2 class="accent-yellow">05 — THE MISSING BUTTON 🔘</h2><p>Railway employee brass button found beneath Cabin 7.</p></div>
+            </section>
+
+            <section id="timeline-406" class="tab-content">
+                <h1>⏱️ TIMELINE — Case 406: The Last Passenger</h1>
+                <div class="tile">
+                    <ul>
+                        <li><strong class="accent-yellow">7:50 PM:</strong> Edward arrives at station, arguing.</li>
+                        <li><strong class="accent-yellow">8:05 PM:</strong> Meets woman with red scarf in café.</li>
+                        <li><strong class="accent-yellow">8:15 PM:</strong> Loud argument near luggage room.</li>
+                        <li><strong class="accent-yellow">8:22 PM:</strong> Edward's watch stops.</li>
+                        <li><strong class="accent-yellow">8:30 PM:</strong> Luggage trolley with coat-covered trunk pushed toward Platform 4.</li>
+                        <li><strong class="accent-yellow">8:45 PM:</strong> Midnight Express departs.</li>
+                        <li><strong class="accent-yellow">11:40 PM:</strong> Train reaches final destination; Edward found dead.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="suspects-406" class="tab-content active">
+                <h1>👥 THE SUSPECTS — Case 406: The Last Passenger</h1>
+                <div style="text-align: center; margin-bottom: 20px;"><img src="case 3.png" alt="Case 406" style="max-width: 100%; border: 2px solid #e3b341; border-radius: 4px;"></div>
+                <div class="suspect-text-grid">
+                    <div class="suspect-bio"><h2 class="accent-yellow">MARA VOSS</h2><p>Age 36, Politician's Assistant. Controlled and private; Edward investigated her employer.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">SAMUEL REED</h2><p>Age 52, Railway Conductor. Had access to Cabin 7; uniform recently repaired.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">LEO HARROW</h2><p>Age 27, Unemployed Victim's Brother. Owed Edward money; argued earlier.</p></div>
+                    <div class="suspect-bio"><h2 class="accent-yellow">ELIZA MORROW</h2><p>Age 44, Station Café Owner. Served coffee; lied about closing time.</p></div>
+                </div>
+            </section>
+
+            <section id="interrogation-406" class="tab-content">
+                <h1>🎙️ LIVE INTERROGATION — Case 406: The Last Passenger</h1>
+                <div id="suspect-menu-406" class="full-page-menu">
+                    <p style="color: #8b949e; margin-bottom: 20px;">Select someone to interrogate (8 Questions max):</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                        <button class="suspect-select-btn" onclick="startInterrogation('406', 'mara406')"><span class="purple-icon">👤</span> Mara Voss</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('406', 'samuel406')"><span class="purple-icon">👤</span> Samuel Reed</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('406', 'leo406')"><span class="purple-icon">👤</span> Leo Harrow</button>
+                        <button class="suspect-select-btn" onclick="startInterrogation('406', 'eliza406')"><span class="purple-icon">👤</span> Eliza Morrow</button>
+                    </div>
+                </div>
+                <div id="interrogation-session-406" style="display: none;">
+                    <div class="interrogation-header">
+                        <button class="back-link" onclick="backToMenu('406')">← Change Suspect</button>
+                        <h2 id="current-suspect-name-406" style="margin:0; color: #58a6ff;">INTERROGATING: NAME</h2>
+                        <div class="question-tracker"><span style="color:#8b949e; font-size: 14px;">Questions: </span><strong id="q-count-406" style="color:#e3b341;">8</strong><strong style="color:#8b949e;">/8</strong></div>
+                    </div>
+                    <!-- Interrogation Instruction Note -->
+                    <div class="interrogation-note">
+                        💡 <strong>Detective Note:</strong> You have an 8-question limit per suspect. Use the suggested clue chips below or type your own questions. If you reach Question 6 (2 remaining) without finding the truth, the system will provide a mandatory hint.
+                    </div>
+                    <div class="split-layout">
+                        <div class="chat-section">
+                            <div id="chat-box-406" class="chat-box"></div>
+                            <div id="clue-area-406" class="clue-area"></div>
+                            <div class="input-area"><input type="text" id="user-input-406" placeholder="Ask your question..."><button id="send-btn-406" onclick="sendMessage('406')">Send</button></div>
+                        </div>
+                        <div class="notepad-section"><div class="notepad-header"><h3 style="margin:0; color: #c9d1d9;">📝 Notes</h3></div><textarea id="detective-notes-406" class="notes-textarea" placeholder="Record clues..."></textarea></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="verdict-406" class="tab-content">
+                <h1 class="center-text">⚖️ FINAL VERDICT — Case 406: The Last Passenger</h1>
+                <p class="center-text" style="margin-bottom: 20px;"><strong>WHO KILLED EDWARD HARROW?</strong></p>
+                <div class="verdict-grid" id="verdict-buttons-406">
+                    <button onclick="checkVerdict('406', 'Mara')">Mara Voss</button>
+                    <button onclick="checkVerdict('406', 'Samuel')">Samuel Reed</button>
+                    <button onclick="checkVerdict('406', 'Leo')">Leo Harrow</button>
+                    <button onclick="checkVerdict('406', 'Eliza')">Eliza Morrow</button>
+                </div>
+                <div id="verdict-result-406" style="display: none; background: #010409; padding: 30px; border-radius: 8px; border: 1px solid #e3b341;"></div>
+            </section>
+        </div>
 
     </main>
 
