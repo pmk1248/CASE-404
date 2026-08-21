@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASE: 404 - AI Detective Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <h2 class="sidebar-title">CASE: 404</h2>
+        <button onclick="openTab('home')">🏠 Home</button>
+        <button onclick="openTab('files')">📁 Case Files</button>
+        <button onclick="openTab('evidence')">🔍 Evidence</button>
+        <button onclick="openTab('timeline')">⏱️ Timeline</button>
+        <button onclick="openTab('suspects')" class="active-nav">👥 Suspects</button>
+        <button onclick="openTab('interrogation')">🎤 Interrogation</button>
+        <button onclick="openTab('verdict')">⚖️ Final Verdict</button>
+    </nav>
+
+    <!-- Main Dashboard Area -->
+    <main class="dashboard">
+        
+        <!-- Home Section -->
+        <section id="home" class="tab-content">
+            <div class="intro-banner">
+                <div class="scanline"></div>
+                <h1 class="glitch-text">CASE 404</h1>
+                <h2>THE SILENCE OF BLACKWOOD MANOR</h2>
+                <p class="accent-yellow">17 OCTOBER 1894 • RAVENSHIRE</p>
+            </div>
+            <p>At 11:43 PM, the lights went out.<br>Fifteen minutes later, they returned.<br>Lord Edmund Blackwood was dead.</p><br>
+            <p>He was found inside his locked study.<br>The door was locked.<br>The window was locked.</p><br>
+            <p>Four people were inside the manor.<br>Earlier that evening, Lord Blackwood had made one announcement:</p><br>
+            <p style="color: #58a6ff;"><em>“At midnight, I will reveal the truth about Thomas Vale.”</em></p><br>
+            <p>Nobody knew what that meant.<br>But before midnight—<br>Someone made sure he would never speak again.</p><br>
+            <p><strong>Your mission:</strong> Find the killer.</p>
+        </section>
+
+        <!-- Case Files Section -->
+        <section id="files" class="tab-content">
+            <h1>📁 CASE FILES</h1>
+            <div class="tile">
+                <h2 class="accent-yellow">THE VICTIM</h2>
+                <ul>
+                    <li><strong>Name:</strong> Lord Edmund Blackwood</li>
+                    <li><strong>Age:</strong> 62</li>
+                    <li><strong>Occupation:</strong> Industrialist</li>
+                    <li><strong>Status:</strong> Dead</li>
+                </ul><br>
+                <p>Lord Blackwood was wealthy, powerful, and feared.<br>Twenty-five years earlier, a factory worker named Thomas Vale died in a supposed accident at Blackwood Industrial Works.<br>Tonight, Lord Blackwood planned to reveal the truth.<br>He never got the chance.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">Cause of Death</h2>
+                <p>Poisoning.<br>The poison: Aconitine.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">THE SECRET</h2>
+                <p>A partially burned letter was found in the fireplace.<br>Only one sentence could be read:</p><br>
+                <p style="color: #58a6ff;"><em>“You took everything from me.”</em></p><br>
+                <p>Another document revealed that Lord Blackwood was planning to change his will.<br>His nephew, Julian, would inherit nothing.<br>Someone else would receive everything.</p>
+            </div>
+        </section>
+
+        <!-- Evidence Section -->
+        <section id="evidence" class="tab-content">
+            <h1>🔍 EVIDENCE</h1>
+            <div class="tile">
+                <h2 class="accent-yellow">01 — THE POISONED DRINK 🥃</h2>
+                <p>Aconitine was found in Lord Blackwood's brandy glass.<br>But the bottle itself was clean.<br>The poison was added after the drink was poured.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">02 — THE SECOND GLASS 🍵</h2>
+                <p>An empty glass was found nearby.<br>It contained traces of: Sugar and Lavender.<br>Only one suspect was known to regularly use lavender sugar.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">03 — THE BROKEN WATCH ⌚</h2>
+                <p>Lord Blackwood's pocket watch was found beneath his desk.<br>It had stopped at: <strong>11:47 PM</strong><br>The watch stopped because it struck the floor.<br>A struggle may have occurred.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">04 — THE CLEAN KEY 🔑</h2>
+                <p>The study door was locked from the inside.<br>The key was found on the floor.<br>But strangely— The key was completely clean.<br>The study floor was dusty.<br>Someone may have placed the key there after leaving the room.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">05 — THE FOOTPRINT 👣</h2>
+                <p>A footprint was found outside the study window.<br>But heavy rain had been falling for hours.<br>The footprint was completely dry.<br>It was planted.</p>
+            </div>
+            <div class="tile">
+                <h2 class="accent-yellow">06 — THE COAT BUTTON 🔘</h2>
+                <p>A button matching Julian's coat was found beneath the desk.<br>But the thread attached to it was dry.<br>Was Julian inside the study? Or was someone trying to frame him?</p>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="tab-content">
+            <h1>⏱️ TIMELINE</h1>
+            <div class="tile">
+                <ul>
+                    <li><strong class="accent-yellow">7:30 PM:</strong> The four suspects arrive at Blackwood Manor. A storm begins.</li>
+                    <li><strong class="accent-yellow">8:15 PM:</strong> Dinner begins. Lord Blackwood appears nervous.</li>
+                    <li><strong class="accent-yellow">9:05 PM:</strong> Lord Blackwood announces: <em>“At midnight, I will reveal the truth about Thomas Vale.”</em> Everyone reacts.</li>
+                    <li><strong class="accent-yellow">9:30 PM:</strong> Julian argues with Lord Blackwood. Witnesses hear: <em>“You can't take everything from me!”</em></li>
+                    <li><strong class="accent-yellow">10:22 PM:</strong> Clara enters Lord Blackwood's study. She leaves seven minutes later, visibly upset.</li>
+                    <li><strong class="accent-yellow">10:40 PM:</strong> Lord Blackwood enters his study. He takes a bottle of brandy with him.</li>
+                    <li><strong class="accent-yellow">10:55 PM:</strong> Mrs. Graves visits the study. She claims Lord Blackwood was alive.</li>
+                    <li><strong class="accent-yellow">11:25 PM:</strong> Dr. Vale leaves the drawing room. He claims he went to his bedroom. No one confirms this.</li>
+                    <li><strong class="accent-yellow">11:43 PM — BLACKOUT:</strong> The entire manor goes dark. For fifteen minutes, nobody can account for everyone.</li>
+                    <li><strong class="accent-yellow">11:47 PM:</strong> A loud crash comes from the study. Lord Blackwood's watch stops.</li>
+                    <li><strong class="accent-yellow">11:51 PM:</strong> A woman screams. Nobody admits it was them.</li>
+                    <li><strong class="accent-yellow">11:58 PM — LIGHTS RETURN:</strong> The study door is locked. Lord Blackwood does not answer.</li>
+                    <li><strong class="accent-yellow">12:05 AM:</strong> The door is forced open. Lord Blackwood is dead.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Suspects Section -->
+        <section id="suspects" class="tab-content active">
+            <h1>👥 THE SUSPECTS</h1>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="case charc 1.jpeg" alt="Case Characters" style="max-width: 100%; border: 2px solid #e3b341; border-radius: 4px;">
+            </div>
+
+            <div class="suspect-text-grid">
+                <div class="suspect-bio">
+                    <h2 class="accent-yellow">SUSPECT 01 — JULIAN BLACKWOOD</h2>
+                    <p><strong>Profile:</strong> Charming. Reckless. Deeply in debt. Lord Blackwood planned to remove Julian from his will.</p>
+                    <p><strong>Suspicious Facts:</strong> Publicly argued with the victim. No confirmed alibi during the blackout. His coat button was found in the study.</p>
+                </div>
+                <div class="suspect-bio">
+                    <h2 class="accent-yellow">SUSPECT 02 — CLARA WHITMORE</h2>
+                    <p><strong>Profile:</strong> Quiet. Intelligent. Returned to Ravenshire after twenty years. She once loved Lord Blackwood's missing son.</p>
+                    <p><strong>Suspicious Facts:</strong> Met privately with the victim. Left the study visibly upset. Knows about poisonous plants. Her gloves were wet.</p>
+                </div>
+                <div class="suspect-bio">
+                    <h2 class="accent-yellow">SUSPECT 03 — DR. ADRIAN VALE</h2>
+                    <p><strong>Profile:</strong> Calm. Intelligent. Trusted. But he has one secret. His father was Thomas Vale.</p>
+                    <p><strong>Suspicious Facts:</strong> Expert knowledge of poison. No confirmed alibi. Had access to the lavender sugar. Lied about his movements.</p>
+                </div>
+                <div class="suspect-bio">
+                    <h2 class="accent-yellow">SUSPECT 04 — MRS. ELEANOR GRAVES</h2>
+                    <p><strong>Profile:</strong> Worked for the family for twenty-eight years. She knows every room, every key, and every secret.</p>
+                    <p><strong>Suspicious Facts:</strong> Last confirmed person to see Lord Blackwood alive. Had access to the study and lavender sugar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interrogation Room (WITH AI CHAT & NOTEPAD) -->
+        <section id="interrogation" class="tab-content">
+            <h1>🎙️ LIVE INTERROGATION ROOM</h1>
+            
+            <!-- Full Page Centered Menu -->
+            <div id="suspect-menu" class="full-page-menu">
+                <p style="color: #8b949e; margin-bottom: 20px; font-size: 16px;">Select someone to interrogate:</p>
+                
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 700px;">
+                    <button class="suspect-select-btn" onclick="startInterrogation('julian')">
+                        <span class="purple-icon">👤</span> Julian Blackwood
+                    </button>
+                    <button class="suspect-select-btn" onclick="startInterrogation('clara')">
+                        <span class="purple-icon">👤</span> Clara Whitmore
+                    </button>
+                    <button class="suspect-select-btn" onclick="startInterrogation('adrian')">
+                        <span class="purple-icon">👤</span> Dr. Adrian Vale
+                    </button>
+                    <button class="suspect-select-btn" onclick="startInterrogation('eleanor')">
+                        <span class="purple-icon">👤</span> Mrs. Eleanor Graves
+                    </button>
+                </div>
+            </div>
+
+            <div id="interrogation-session" style="display: none;">
+                
+                <div class="interrogation-header">
+                    <button class="back-link" onclick="backToMenu()">← Change Suspect</button>
+                    <h2 id="current-suspect-name" style="margin:0; color: #58a6ff;">INTERROGATING: NAME</h2>
+                    <!-- The 5 Question Tracker -->
+                    <div class="question-tracker">
+                        <span style="color:#8b949e; font-size: 14px;">Questions Remaining: </span>
+                        <strong id="q-count" style="color:#e3b341; font-size: 18px;">5</strong><strong style="color:#8b949e;">/5</strong>
+                    </div>
+                </div>
+                
+                <!-- Split Layout: Chat + Notepad -->
+                <div class="split-layout">
+                    
+                    <!-- Left: AI Chat -->
+                    <div class="chat-section">
+                        <div id="chat-box" class="chat-box"></div>
+                        
+                        <!-- Quick Clue Buttons (Optional) -->
+                        <div id="clue-area" class="clue-area"></div>
+                        
+                        <!-- AI Typing Input -->
+                        <div class="input-area">
+                            <input type="text" id="user-input" placeholder="Type your question for the suspect...">
+                            <button id="send-btn" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Detective's Notepad -->
+                    <div class="notepad-section">
+                        <div class="notepad-header">
+                            <h3 style="margin:0; color: #c9d1d9;">📝 Detective's Notes</h3>
+                        </div>
+                        <textarea id="detective-notes" class="notes-textarea" placeholder="Record your deductions, contradictions, and evidence notes here... (Saves automatically)"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Verdict Section -->
+        <section id="verdict" class="tab-content">
+            <h1 class="center-text">⚖️ FINAL VERDICT</h1>
+            <p class="center-text" style="margin-bottom: 20px;"><strong>WHO KILLED LORD BLACKWOOD?</strong></p>
+            
+            <div class="verdict-grid" id="verdict-buttons">
+                <button onclick="checkVerdict('Julian')">Julian Blackwood</button>
+                <button onclick="checkVerdict('Clara')">Clara Whitmore</button>
+                <button onclick="checkVerdict('Adrian')">Dr. Adrian Vale</button>
+                <button onclick="checkVerdict('Eleanor')">Mrs. Eleanor Graves</button>
+            </div>
+            <br>
+            <!-- Hidden Result Block -->
+            <div id="verdict-result" style="display: none; background: #010409; padding: 30px; border-radius: 8px; border: 1px solid #e3b341;"></div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
